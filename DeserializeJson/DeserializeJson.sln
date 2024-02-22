@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeserializeJson", "DeserializeJson\DeserializeJson.csproj", "{6F132FAB-98B7-4640-90A8-5CFCFD939C0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F132FAB-98B7-4640-90A8-5CFCFD939C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F132FAB-98B7-4640-90A8-5CFCFD939C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F132FAB-98B7-4640-90A8-5CFCFD939C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F132FAB-98B7-4640-90A8-5CFCFD939C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A37D3604-4C8A-42E0-9F66-B4347F7A2BD5}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/jamesonbm
+		SccProjectUniqueName0 = DeserializeJson\\DeserializeJson.csproj
+		SccProjectName0 = DeserializeJson
+		SccAuxPath0 = https://dev.azure.com/jamesonbm
+		SccLocalPath0 = DeserializeJson
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal
