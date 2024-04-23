@@ -8,9 +8,9 @@ namespace JBMDatabase.Repos
     {
         Task<bool> AddAsync<TEntity>(TEntity entity) where TEntity : BaseEntity;
         Task AddAsync<TEntity>(IEnumerable<TEntity> entities) where TEntity : BaseEntity;
-        Task<TEntity> GetAsync<TEntity>(Guid id, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity;
-        Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity;
-        Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity;
+        Task<TEntity> GetAsync<TEntity>(Guid id, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity;
+        Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity;
+        Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity;
         bool Update<TEntity>(TEntity entity) where TEntity : BaseEntity;
         void Update<TEntity>(IEnumerable<TEntity> entities) where TEntity : BaseEntity;
         Task<object> DeleteAsync<TEntity>(Guid id, bool returnObject = false) where TEntity : BaseEntity;

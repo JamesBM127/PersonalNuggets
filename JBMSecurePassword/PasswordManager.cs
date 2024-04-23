@@ -16,7 +16,7 @@ namespace JBMSecurePassword
 
         public static string HashPassword(string password, string salt)
         {
-            byte[] saltBytes = Convert.FromBase64String(salt);
+            //byte[] saltBytes = Convert.FromBase64String(salt);
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password + salt);
 
             using (var sha256 = SHA256.Create())

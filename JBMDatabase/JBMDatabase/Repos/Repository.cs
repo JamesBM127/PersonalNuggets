@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace JBMDatabase.Repos
 {
@@ -39,9 +40,15 @@ namespace JBMDatabase.Repos
                 await Context.AddRangeAsync(entities);
         }
 
-        public async Task<TEntity> GetAsync<TEntity>(Guid id, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity
+        public async Task<TEntity> GetAsync<TEntity>(Guid id, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity
         {
             IQueryable<TEntity> query = Context.Set<TEntity>().AsNoTrackingWithIdentityResolution();
+
+            if (!tracking)
+            {
+                query.AsNoTrackingWithIdentityResolution();
+            }
+
             TEntity? entity = null;
 
             if (include != null)
@@ -61,14 +68,19 @@ namespace JBMDatabase.Repos
             return entity;
         }
 
-        public async Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>>? expression, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity
+        public async Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>>? expression, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity
         {
             if (expression == null)
             {
                 throw new ArgumentNullException($"{typeof(Expression).Name}", "can't be null");
             }
 
-            IQueryable<TEntity> query = Context.Set<TEntity>().Where(expression);
+            IQueryable<TEntity> query = Context.Set<TEntity>().Where(expression); ;
+
+            if (!tracking)
+            {
+                query.AsNoTrackingWithIdentityResolution();
+            }
 
             if (include != null)
             {
@@ -84,15 +96,17 @@ namespace JBMDatabase.Repos
             {
             }
 
-
-            //TEntity? entity = await query.FirstOrDefaultAsync();
-
             return entity;
         }
 
-        public async Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null) where TEntity : BaseEntity
+        public async Task<IReadOnlyCollection<TEntity>> ListAsync<TEntity>(Expression<Func<TEntity, bool>>? expression = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null, bool tracking = true) where TEntity : BaseEntity
         {
             IQueryable<TEntity> query = Context.Set<TEntity>();
+
+            if (!tracking)
+            {
+                query.AsNoTrackingWithIdentityResolution();
+            }
 
             if (include != null)
             {
