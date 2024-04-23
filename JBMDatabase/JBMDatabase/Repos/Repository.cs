@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace JBMDatabase.Repos
 {
@@ -79,7 +78,7 @@ namespace JBMDatabase.Repos
 
             if (!tracking)
             {
-                query.AsNoTrackingWithIdentityResolution();
+                query = query.AsNoTrackingWithIdentityResolution();
             }
 
             if (include != null)
@@ -251,6 +250,11 @@ namespace JBMDatabase.Repos
         public void Detach<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
             Context.Entry(entity).State = EntityState.Detached;
+        }
+
+        public EntityState GetEntityState<TEntity>(TEntity entity) where TEntity : BaseEntity
+        {
+            return Context.Entry(entity).State;
         }
     }
 }

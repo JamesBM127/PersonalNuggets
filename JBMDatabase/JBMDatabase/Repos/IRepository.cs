@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -20,5 +21,6 @@ namespace JBMDatabase.Repos
         Task<bool> SaveChangesAsync();
         void Detach<TEntity>(TEntity entity) where TEntity : BaseEntity;
         IEnumerable<EntityEntry> Track();
+        EntityState GetEntityState<TEntity>(TEntity entity) where TEntity : BaseEntity;
     }
 }
